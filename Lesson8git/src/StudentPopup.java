@@ -12,7 +12,8 @@ public class StudentPopup extends javax.swing.JDialog {
         int marks[] = new int[3];
         marks[0]=Integer.parseInt(tblmarks.getValueAt(0,0).toString());
         marks[1]=Integer.parseInt(tblmarks.getValueAt(0,1).toString());
-        marks[2]=Integer.parseInt(tblmarks.getValueAt(0,2).toString());
+        marks[2]=0;
+        //marks[2]=Integer.parseInt(tblmarks.getValueAt(0,2).toString());
         return marks;
     }
     @SuppressWarnings("unchecked")
@@ -145,7 +146,10 @@ public class StudentPopup extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
-     this.dispose();
+      int marks[] =getMarks();
+        System.out.println("" + marks[0]);
+        this.dispose();
+     
     }//GEN-LAST:event_btnokActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -150,11 +150,11 @@ public class StudentGUI extends javax.swing.JFrame {
         spop.setVisible(true);
         //this code wont run until popup is disposed
         String name = spop.getName();
-        int m[] = spop.getMarks();
+       // int m[] = spop.getMarks();
         txtname.setText(name);
-        txttest1.setText("" + m[0]);
-        txttest2.setText("" + m[1]);
-        txttest3.setText("" + m[2]);
+        //txttest1.setText("" + m[0]);
+       // txttest2.setText("" + m[1]);
+        //txttest3.setText("" + m[2]);
     }//GEN-LAST:event_btnaddActionPerformed
 
     /**
