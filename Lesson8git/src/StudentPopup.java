@@ -1,4 +1,8 @@
 
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
+
 public class StudentPopup extends javax.swing.JDialog {
 
     public StudentPopup(java.awt.Frame parent, boolean modal) {
@@ -10,10 +14,13 @@ public class StudentPopup extends javax.swing.JDialog {
     }
     public int[] getMarks(){
         int marks[] = new int[3];
-        marks[0]=Integer.parseInt(tblmarks.getValueAt(0,0).toString());
-        marks[1]=Integer.parseInt(tblmarks.getValueAt(0,1).toString());
-        marks[2]=0;
-        //marks[2]=Integer.parseInt(tblmarks.getValueAt(0,2).toString());
+         DefaultTableModel model = (DefaultTableModel)tblmarks.getModel();
+        try{
+       
+        marks[0]=Integer.parseInt(model.getValueAt(0,0).toString());
+        marks[1]=Integer.parseInt(model.getValueAt(0,1).toString());
+        marks[2]=Integer.parseInt(model.getValueAt(0,2).toString());
+        }catch(Exception e){JOptionPane.showMessageDialog(this,"Fill out all fields");}
         return marks;
     }
     @SuppressWarnings("unchecked")
