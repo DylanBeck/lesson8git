@@ -47,16 +47,18 @@ public class Student {
 
 }
 
-    //validate data
-    public String validateData() {
+//validate data
+public String validateData() {
     	String errormessage = null;
     	//check if name is entered
-    	if (name.length()<2) 
-    		errormessage += "\nName is required\nPlease re-enter all data";
-    	
-	if (mark1 < 0 || mark1 > 100 || mark2 < 0 || mark2 > 100 || mark3 < 0 || mark3 > 100) 
-    		message += "\nAt least one mark is out of range, please re-enter all data";
-	
-	return message;
-    	}
- }
+    	if (name.length()<2){ 
+    		errormessage += "Name is required \n";
+                } 	
+	if (test[0]<0 || test[0]>100||test[1]<0||test[1]>100||test[2]<0||test[2]>100) {
+    		errormessage += "\nAt least one mark is out of range, please re-enter all data";
+                }
+        if(errormessage !=null){
+                errormessage+= ("\n Please re-enter all data. ");
+                }
+	return errormessage;
+}
