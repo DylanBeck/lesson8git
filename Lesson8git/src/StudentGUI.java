@@ -1,4 +1,5 @@
-import javax.swing.JOptionPane;
+ import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 public class StudentGUI extends javax.swing.JFrame {
     Student s[];
     int size,currentstudent;
@@ -9,6 +10,7 @@ public class StudentGUI extends javax.swing.JFrame {
         size=0;
         currentstudent =-1;
     }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -119,15 +121,18 @@ public class StudentGUI extends javax.swing.JFrame {
             }
         });
 
-        jLabel6.setText("jLabel6");
+        jLabel6.setText("Count");
 
-        jLabel7.setText("jLabel7");
+        jLabel7.setText("Count Index");
 
         lblcount.setEditable(false);
-        lblcount.setText("0");
 
         lblindex.setEditable(false);
-        lblindex.setText("0");
+        lblindex.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                lblindexActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -170,11 +175,11 @@ public class StudentGUI extends javax.swing.JFrame {
                         .addGap(53, 53, 53)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(lblcount, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(39, 39, 39)
+                        .addComponent(lblcount, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(33, 33, 33)
                         .addComponent(jLabel7)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(lblindex, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
+                        .addComponent(lblindex, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(27, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -233,30 +238,51 @@ public class StudentGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_txttest3ActionPerformed
 
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-        StudentPopup spop = new StudentPopup(this, true);
-        spop.setModal(true);
-        spop.setLocationRelativeTo(this);
-        spop.setVisible(true);
+        StudentPopup form = new StudentPopup(this, true);
+        form.setModal(true);
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
         //this code wont run until popup is disposed
-        String name = spop.getName();
-        int m[] = spop.getMarks();
-        txtname.setText(name);
-        txttest1.setText("" + m[0]);
-        txttest2.setText("" + m[1]);
-        txttest3.setText("" + m[2]);
+        Student temp = form.getStudent();//get student from form
+        
+            String em = temp.validateData(); // make sure its ok
+        if(em==null)//addit to list
+        {    s[size]=temp;
+            currentstudent=size;
+            size++;
+            showStudent();//update display
+    }
+        else // do not and show error
+            JOptionPane.showMessageDialog(this, em);
+            
     }//GEN-LAST:event_btnaddActionPerformed
     public void showStudent(){
         txtname.setText(s[currentstudent].getName());
-        txttest1.setText(""+s[currentstudent].getMarks(1));
-        txttest2.setText(""+s[currentstudent].getMarks(2));
-        txttest3.setText(""+s[currentstudent].getMarks(3));
+        txttest1.setText(""+s[currentstudent].getScore(1));
+        txttest2.setText(""+s[currentstudent].getScore(2));
+        txttest3.setText(""+s[currentstudent].getScore(3));
         txtaverage.setText(""+s[currentstudent].getAverage());
         lblcount.setText(""+size);
         lblindex.setText(""+currentstudent);
     }
     
     private void btnmodifyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnmodifyActionPerformed
-        // TODO add your handling code here:
+        StudentPopup form = new StudentPopup(this, true);
+        form.setForm(s[currentstudent]);
+        form.setModal(true);
+        form.setLocationRelativeTo(this);
+        form.setVisible(true);
+        
+         Student temp = form.getStudent();//get student from form
+        
+            String em = temp.validateData(); // make sure its ok
+        if(em==null)//addit to list
+        {    s[size]=temp;
+            currentstudent=size;
+            showStudent();//update display
+    }
+        else // do not and show error
+            JOptionPane.showMessageDialog(this, em);
     }//GEN-LAST:event_btnmodifyActionPerformed
 
     private void btnnextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnnextActionPerformed
@@ -276,7 +302,7 @@ public class StudentGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_btnprevActionPerformed
 
     private void btnlastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnlastActionPerformed
-        currentstudent=4; //QUESTION
+        currentstudent= size-1; 
         showStudent();
     }//GEN-LAST:event_btnlastActionPerformed
 
@@ -284,6 +310,10 @@ public class StudentGUI extends javax.swing.JFrame {
        currentstudent=0;
        showStudent();
     }//GEN-LAST:event_btnfirstActionPerformed
+
+    private void lblindexActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lblindexActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_lblindexActionPerformed
 
     /**
      * @param args the command line arguments

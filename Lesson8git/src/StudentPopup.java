@@ -2,27 +2,25 @@
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-
 public class StudentPopup extends javax.swing.JDialog {
+    Student temp;
 
     public StudentPopup(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
     }
-    public String getName(){
-        return txtname.getText();
+
+        public void setForm(Student s) {
+        DefaultTableModel model = (DefaultTableModel) (tblmarks.getModel());
+        txtname.setText(s.getName());
+        model.setValueAt(s.getScore(1), 0, 0);
+        model.setValueAt(s.getScore(2), 0, 1);
+        model.setValueAt(s.getScore(3), 0, 2);
     }
-    public int[] getMarks(){
-        int marks[] = new int[3];
-         DefaultTableModel model = (DefaultTableModel)tblmarks.getModel();
-        try{
-       
-        marks[0]=Integer.parseInt(model.getValueAt(0,0).toString());
-        marks[1]=Integer.parseInt(model.getValueAt(0,1).toString());
-        marks[2]=Integer.parseInt(model.getValueAt(0,2).toString());
-        }catch(Exception e){JOptionPane.showMessageDialog(this,"Fill out all fields");}
-        return marks;
-    }
+        public Student getStudent(){
+            return temp;
+        }
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -153,10 +151,20 @@ public class StudentPopup extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnokActionPerformed
-      int marks[] =getMarks();
-        System.out.println("" + marks[0]);
+        int marks[] = new int[3];
+        String name=txtname.getText();
+        try {
+
+            marks[0] = Integer.parseInt(tblmarks.getValueAt(0, 0).toString());
+            marks[1] = Integer.parseInt(tblmarks.getValueAt(0, 1).toString());
+            marks[2] = Integer.parseInt(tblmarks.getValueAt(0, 2).toString());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "Fill out all fields \nPress <enter> on each mark");
+             return;
+        }
+       temp = new Student(name,marks);
         this.dispose();
-     
+
     }//GEN-LAST:event_btnokActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

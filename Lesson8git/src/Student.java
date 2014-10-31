@@ -1,4 +1,7 @@
 
+import javax.swing.table.DefaultTableModel;
+
+
 public class Student {
 
     //instance variables
@@ -45,7 +48,8 @@ public class Student {
         return str;
     }
 
-}
+
+
 
 //validate data
 public String validateData() {
@@ -61,4 +65,5 @@ public String validateData() {
                 errormessage+= ("\n Please re-enter all data. ");
                 }
 	return errormessage;
+}
 }
