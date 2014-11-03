@@ -61,7 +61,7 @@ public class CrapsGUI extends javax.swing.JFrame {
 
     private void btnrollActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrollActionPerformed
         int num=(int)(Math.random()*6)+1;
-        URL file=getClass().getResource("d"+num+".JPG");
+        URL file=getClass().getResource("Images\\d"+num+".JPG");
         lbldie.setIcon(new ImageIcon(file)); 
     }//GEN-LAST:event_btnrollActionPerformed
 
