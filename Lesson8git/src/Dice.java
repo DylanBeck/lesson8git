@@ -8,7 +8,7 @@ public class Dice {
     public Dice()
     {
         value = 1;
-        URL file = getClass().getResource("d1.jpg");
+        URL file = getClass().getResource("d1.JPG");
         pic = new ImageIcon(file);
        
     }
@@ -20,7 +20,7 @@ public class Dice {
     public void roll()
     {
         value =(int)(Math.random()*6)+1;
-        URL file = getClass().getResource("d"+value + ".jpg");
+        URL file = getClass().getResource("d"+value + ".JPG");
         pic = new ImageIcon(file);
     }
     public ImageIcon getPic()
