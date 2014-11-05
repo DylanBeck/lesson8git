@@ -12,6 +12,11 @@ public class CrapsGUI extends javax.swing.JFrame {
         initComponents();
         game = new Craps();  
         newgame=true;
+        txtgame.setEditable(false);
+        txtgame.setText("Welcome to CRAPS!\nClick Roll to start");
+        money = 100;
+        
+               
     }
 
 
@@ -27,10 +32,10 @@ public class CrapsGUI extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         txtgame = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         lblmoney = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Craps");
 
         lbldie2.setBorder(new javax.swing.border.MatteBorder(null));
 
@@ -43,20 +48,23 @@ public class CrapsGUI extends javax.swing.JFrame {
 
         lbldie1.setBorder(new javax.swing.border.MatteBorder(null));
 
-        lblsum.setBackground(new java.awt.Color(240, 0, 240));
-        lblsum.setFont(new java.awt.Font("Arial Black", 1, 14)); // NOI18N
-        lblsum.setForeground(new java.awt.Color(240, 0, 240));
+        lblsum.setFont(new java.awt.Font("Arial Black", 1, 48)); // NOI18N
+        lblsum.setForeground(new java.awt.Color(0, 0, 240));
         lblsum.setBorder(new javax.swing.border.MatteBorder(null));
 
-        btnquit.setText("jButton1");
+        btnquit.setText("Quit");
+        btnquit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnquitActionPerformed(evt);
+            }
+        });
 
         txtgame.setColumns(20);
         txtgame.setRows(5);
         jScrollPane1.setViewportView(txtgame);
 
-        jLabel2.setText("$$");
-
-        lblmoney.setText("jLabel3");
+        lblmoney.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        lblmoney.setText("$100");
         lblmoney.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -68,27 +76,19 @@ public class CrapsGUI extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jScrollPane1)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(lbldie1, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnroll))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(lbldie1, javax.swing.GroupLayout.DEFAULT_SIZE, 97, Short.MAX_VALUE)
+                            .addComponent(btnroll, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(lbldie2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(26, 26, 26)
-                                .addComponent(lblsum, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(btnquit)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel1))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addGap(50, 50, 50)
-                                        .addComponent(jLabel2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
-                                        .addComponent(lblmoney)))))))
-                .addGap(39, 39, 39))
+                            .addComponent(btnquit, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lbldie2, javax.swing.GroupLayout.PREFERRED_SIZE, 97, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel1)
+                            .addComponent(lblmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(lblsum, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(6, 6, 6))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -100,18 +100,16 @@ public class CrapsGUI extends javax.swing.JFrame {
                             .addComponent(lbldie1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(lbldie2, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(49, 49, 49)
-                        .addComponent(lblsum, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50)
+                        .addComponent(lblsum, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnroll)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(btnquit)
-                        .addComponent(jLabel1)
-                        .addComponent(jLabel2)
-                        .addComponent(lblmoney)))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnquit)
+                    .addComponent(jLabel1)
+                    .addComponent(lblmoney, javax.swing.GroupLayout.PREFERRED_SIZE, 29, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnroll))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                 .addGap(19, 19, 19))
         );
 
@@ -137,7 +135,29 @@ public class CrapsGUI extends javax.swing.JFrame {
         //update big total number at the side
         lblsum.setText(""+game.getTotal());
         
+        if(game.hasWon()){
+            txtgame.append("WON");
+            game= new Craps();
+            newgame= true;
+            money +=15;
+            lblmoney.setText("$"+money);
+          }
+            
+        else if(game.hasLost()){
+            txtgame.append("LOST");
+            game = new Craps();
+            newgame = true;          
+        }
+        else
+            txtgame.append("Game continues. Roll a"+ getPoint() +" to win or a 7 to lose" );
+      
+        
     }//GEN-LAST:event_btnrollActionPerformed
+
+    private void btnquitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnquitActionPerformed
+        // TODO add your handling code here:
+        //SystemQuit(0);
+    }//GEN-LAST:event_btnquitActionPerformed
 
     /**
      * @param args the command line arguments
@@ -179,7 +199,6 @@ public class CrapsGUI extends javax.swing.JFrame {
     private javax.swing.JButton btnquit;
     private javax.swing.JButton btnroll;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel lbldie1;
     private javax.swing.JLabel lbldie2;

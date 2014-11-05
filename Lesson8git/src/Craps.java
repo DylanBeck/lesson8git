@@ -22,6 +22,9 @@ public class Craps{
     public int getTotal(){
         return die1.getValue() + die2.getValue();
     }
+    public int getPoint(){
+        return point;
+    }
     public boolean hasWon()
     {
         if(rollnum==1) return (getTotal()==7||getTotal()==11);
